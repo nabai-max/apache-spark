@@ -147,7 +147,7 @@ realComplex = sc.parallelize([
     Row(col_list=[3,4,5], col_dict = {"sqrt2": 1.4142}, col_row = Row(number=1, fraction=4142), col_time=datetime(2019,7,22,5,54,0)),
     Row(col_list=[6,7,9,10], col_dict = {"sqrt3": 1.73205}, col_row = Row(number=1, fraction=73205), col_time=datetime(2019,7,22,5,55,0))
 ])
-realComplext.toDF().show()
+realComplex.toDF().show()
 
 """
 +------------------+-------------+----------+-------------------+
@@ -193,3 +193,15 @@ realComplexDF.select('col_dict', 'col_row').show()
 |[sqrt3 -> 1.73205]|[73205, 1]|
 +------------------+----------+
 """
+
+
+##### DATASET #####
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName("Python Spark DataSet example").config("spark.config.option", "value").getOrCreate()
+airports_ds = spark.read.option("header", "true").csv("/user/student/airline/airports.csv")
+airports_ds.show()
+airports_ds.count()
+airports_ds.take(2)
+airports_ds.first()
+airports_ds.collect()
+
