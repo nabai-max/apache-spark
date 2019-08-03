@@ -81,9 +81,9 @@ result.show()
 // hdfs dfs -copyFromLocal /home/student/dev/airline/airports.csv /user/students/airline
 
 val sqlContext = new org.apache.spark.sql.SQLContext(sc);
-val diamonds = sqlContext.read.format("csv").option("header", "true").option("inferSchema", "true").load("/user/student/airline/airports.csv")
+val airports = sqlContext.read.format("csv").option("header", "true").option("inferSchema", "true").load("/user/student/airline/airports.csv")
 
-//   val diamonds = sqlContext.read.format("csv")
+//   val airports = sqlContext.read.format("csv")
 //   .option("header", "true")
 //   .option("inferSchema", "true")
 //   .load("/user/student/airline/airports.csv")
@@ -104,10 +104,10 @@ example_data.collect()
 val hamletText = sc.textFile("/user/student/shakespeare/tragedy/hamlet.txt")
 hamletText.collect()
 val words = hamletText.flatMap(_.toLowerCase.split(" ")).filter(_ != "").toDS.groupBy("value")
-words.count().foreach{x => println(x)}
+words.count().foreach{x => println(
 
 
-// Additional operations on RDD ....
+// Additional operations on RDD ....val wordsDataset = sc.parallelize(Seq("Spark I am your father", "May the spark be with you", "Spark I am your father")).toDS()
 // Narrow transformat
 val example_data = sc.parallelize(1 to 10)
 val example_data_by_2 = example_data.map(_*2)
@@ -118,7 +118,7 @@ val flatWords = hamletText.flatMap(x => x.toLowerCase.split(" "))
 flatWords.foreach{x => println(x)}
 flatWords.filter(_ != "").foreach{x => println(x)}
 flatWords.filter(_ != "").toDS.groupBy("value").count.foreach{x => println(x)}
-
+hamletText.flatMap(x => x.toLowerCase.split(" ")).filter(_ != "").toDS.groupBy("value").count.foreach{x => println(x)}
 // filter
 val listA = words.count.filter(x => {x.get(0) == "cold" || x.get(0) == "conversation"})
 val listB = words.count.filter(x => {x.get(0) == "rosencrantz" || x.get(0) == "polonius"})

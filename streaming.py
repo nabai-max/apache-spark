@@ -4,6 +4,10 @@
 from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 
+# Install netcat
+# sudo apt-get install netcat
+# run nc -lk 9999
+
 # sc = SparkContext(appName="StreamingWC")
 ssc = StreamingContext(sc, 1)
 lines_stream = ssc.socketTextStream("localhost", 9999)
@@ -13,3 +17,6 @@ wordCount = word_pairs.reduceByKey(lambda x, y: x + y)
 wordCount.pprint()
 ssc.start()
 ssc.awaitTermination()
+
+
+## how about scala ....
