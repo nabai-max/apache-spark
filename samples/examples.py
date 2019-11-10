@@ -1,4 +1,7 @@
 # Need to run 'sc' first
+from pyspark import SparkContext, SparkConf, SQLContext
+conf = SparkConf().setAppName('sample_app')
+sc=SparkContext(conf=conf)
 
 from pyspark.sql.types import Row
 from datetime import datetime
