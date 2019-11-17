@@ -26,7 +26,16 @@ class Word_Count():
             kv = strip_punc(str(count))
             if word == kv[0]:
                 print('Found \'{}\' occurs \'{}\' times'.format(kv[0], kv[1]))
+                self.search_word_in_line(word)
+                break
 
+    def search_word_in_line(self, word):
+        count = 1
+        for line in self.text.collect():
+            if word in strip_punc(line):
+                print('{}. {}'.format(count, line))
+            count += 1
+            
 def strip_punc(s):
     return s.translate(str.maketrans('', '', string.punctuation)).split(' ')
 

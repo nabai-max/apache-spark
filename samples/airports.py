@@ -20,7 +20,7 @@ def main(argv):
     for row in df.itertuples():
         buf = ''
         for col in range(1, len(row)):
-            buf += row[col] + ' '
+            buf += row[col] + ', '
         print(buf)
 
 

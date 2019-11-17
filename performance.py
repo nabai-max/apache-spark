@@ -23,7 +23,7 @@ class Performance():
         return orig_airports.first()
         
 def delete_out_dir(out_dir):
-        subprocess.call(["hdfs", "dfs", "-rm", "-R", out_dir])           
+    subprocess.call(["hdfs", "dfs", "-rm", "-R", out_dir])           
         
 def main(argv):
     delete_out_dir(argv[1])
@@ -32,5 +32,19 @@ def main(argv):
     most_count = perf.originated_airport_with_most_flights(argv[1])
     print('{} has the most originated flights at {}'.format(most_count['Origin'], most_count['count']))
 
+    ### New code to be implemented
+    delete_out_dir(argv[1])
+    least_count = perf.originated_airport_with_least_flights(argv[1])
+    print('{} has the least originated flights at {}'.format(least_count['Origin'], most_count['count']))
+
+    delete_out_dir(argv[1])
+    least_count = perf.destination_airport_with_least_flights(argv[1])
+    print('{} has the least destination flights at {}'.format(least_count['Dest'], most_count['count']))
+
+    delete_out_dir(argv[1])
+    most_count = perf.destination_airport_with_most_flights(argv[1])
+    print('{} has the most destination flights at {}'.format(most_count['Dest'], most_count['count']))
+
+    
 if __name__ == '__main__':
     main(sys.argv[1:])
