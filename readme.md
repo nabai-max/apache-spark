@@ -6,14 +6,14 @@ CISC 525 Big Data Architecture class - homework 12 & 13
 ## to run
 
 ```bash
-cd dev/week_12/apache-spark
+cd /home/student/cisc_525/apache-spark
 ./word_count.py hdfs://localhost:9000/user/student/shakespeare/tragedy/hamlet.txt hdfs://localhost:9000/tmp/hamlet_output beseech
 ```
 
 or
 
 ```bash
-cd dev/week_12/apache-spark
+cd /home/student/cisc_525/apache-spark
 python3 ./word_count.py hdfs://localhost:9000/user/student/shakespeare/tragedy/hamlet.txt hdfs://localhost:9000/tmp/hamlet_output beseech
 ```
 
