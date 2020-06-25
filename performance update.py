@@ -31,12 +31,13 @@ class Performance():
         dep_airports = self.df.groupBy('Dest').count().orderBy(desc('count'))
         self.sc.parallelize(dep_airports.collect()).saveAsTextFile(out_dir)
         return dep_airports.first()
-       
+    
     def departure_airport_with_least_flights(self, out_dir):
         dep_airports = self.df.groupBy('Dest').count().orderBy('count',ascending=True)
         self.sc.parallelize(dep_airports.collect()).saveAsTextFile(out_dir)
         return dep_airports.first()
 
+   
         
 def delete_out_dir(out_dir):
     subprocess.call(["hdfs", "dfs", "-rm", "-R", out_dir])           
@@ -69,6 +70,9 @@ def main(argv):
     perf.load_year(argv[0])
     most_count = perf.departure_airport_with_least_flights(argv[1])
     print('{} has the least departure flights at {}'.format(most_count['Dest'], most_count['count']))
+
+
+
 
 '''    
     delete_out_dir(argv[1])
